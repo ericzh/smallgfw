@@ -14,6 +14,7 @@ class GFW(object):
         for word in keywords:
             p = self.d
             for char in word:
+                char = char.lower()
                 if p=='':
                     q[k] = {}
                     p = q[k]
@@ -29,7 +30,7 @@ class GFW(object):
         """
         >>> gfw = GFW()
         >>> gfw.set(["sexy","girl","love","shit"])
-        >>> s = gfw.replace("shit!,Cherry is a sexy girl. She loves python.","*")
+        >>> s = gfw.replace("Shit!,Cherry is a sexy girl. She loves python.","*")
         >>> print s
         *!,Cherry is a * *. She *s python.
         """
@@ -40,7 +41,7 @@ class GFW(object):
         result = []
         ln = len(text)
         while i+j<ln:
-            t = text[i+j]
+            t = text[i+j].lower()
             if not (t in p):
                 j = 0
                 i += 1
@@ -71,7 +72,7 @@ class GFW(object):
         result = []
         ln = len(text)
         while i+j<ln:
-            t = text[i+j]
+            t = text[i+j].lower()
             if not (t in p):
                 j = 0
                 i += 1
