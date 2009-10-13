@@ -12,6 +12,7 @@ class GFW(object):
         q = {}
         k = ''
         for word in keywords:
+            word += chr(11)
             p = self.d
             for char in word:
                 char = char.lower()
@@ -49,7 +50,7 @@ class GFW(object):
                 continue
             p = p[t]
             j+=1
-            if p=='':
+            if chr(11) in p:
                 p = self.d
                 result.append(text[z:i])
                 result.append(mask)
@@ -73,6 +74,7 @@ class GFW(object):
         ln = len(text)
         while i+j<ln:
             t = text[i+j].lower()
+            #print i,j,hex(ord(t))
             if not (t in p):
                 j = 0
                 i += 1
@@ -80,7 +82,8 @@ class GFW(object):
                 continue
             p = p[t]
             j+=1
-            if p=='':
+            #print p,i,j
+            if chr(11) in p:
                 p = self.d
                 result.append((i,j,text[i:i+j]))
                 i = i+j
