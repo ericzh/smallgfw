@@ -1,7 +1,7 @@
 ﻿#encoding=utf-8
 #DFA based text filter
 #author=sunjoy
-
+#version=0.3
 class GFW(object):
     def __init__(self):
         self.d = {}
@@ -42,7 +42,9 @@ class GFW(object):
         result = []
         ln = len(text)
         while i+j<ln:
+            #print i,j
             t = text[i+j].lower()
+            #print hex(ord(t))
             if not (t in p):
                 j = 0
                 i += 1
@@ -57,7 +59,7 @@ class GFW(object):
                 i = i+j
                 z = i
                 j = 0
-        result.append(text[z:i])
+        result.append(text[z:i+j])
         return "".join(result)
         
     def check(self,text):
