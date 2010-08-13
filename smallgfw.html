@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>敏感词过滤</title>
+<script type="text/javascript" src="jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="smallgfw.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#btn_check').click(function(){
+            
+            
+        })
+        $('#btn_replace').click(function(){
+            var gfw = new GFW();
+            var keywords = $('#txt_keywords').val().split("\n");
+            gfw.set(keywords);
+            var dirtytext = $('#txt_dirty').val()
+            var t1 = new Date().getTime();
+            for(var i=0;i<20;i++){
+                var result = gfw.replace(dirtytext,"*");
+            }
+            alert(new Date().getTime()-t1);
+            //$("#result").html(result);
+        })
+    })
+    
+</script>
+</head>
+<body>
+<div id="result"></div>
+<textarea rows="15" cols="60" id="txt_keywords">
+keywords
+</textarea>
+<textarea rows="15" cols="60" id="txt_dirty">
+dirty text 
+</textarea>
+<div></div>
+<input type="button" value="检测" id="btn_check"/>
+<input type="button" value="替换" id="btn_replace"/>
+
+</body>
+</html>
